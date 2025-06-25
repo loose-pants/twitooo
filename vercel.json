@@ -5,7 +5,7 @@
       "src": "src/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"  
+        "distDir": "dist"
       }
     },
     {
@@ -13,21 +13,18 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "data/server.js"  
-    },
-    {
-      "src": "/(.*)",
-      "dest": "dist/$1", 
-      "continue": true
-    }
-  ],
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "data/server.js"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/dist/index.html"  
+      "destination": "/dist/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/dist/index.html"
     }
   ]
 }
